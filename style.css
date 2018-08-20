@@ -1,0 +1,21 @@
+.column {
+    display: inline-flex;
+    flex-direction: column-reverse;
+    width: 100px;
+    height: 700px;
+    border: 2px solid black;
+}
+
+.token {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+}
+
+.red {
+    background-color: #ff0000;
+}
+
+.black {
+    background-color: #000000;
+}

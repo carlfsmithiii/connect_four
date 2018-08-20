@@ -25,11 +25,15 @@ gameGridNode.addEventListener("click", function dropToken(event) {
     const tokenColor = token.dataset.color;
     gameGridArray[columnNumber].push([tokenColor]);
     columnNode.appendChild(token);
-    checkVerticalWin(columnNumber, tokenColor);
-    checkHorizontalWin(columnNumber, columnNode.childElementCount - 1, tokenColor);
-    checkAscendingSlant(columnNumber, columnNode.childElementCount - 1, tokenColor);
-    checkDescendingSlant(columnNumber, columnNode.childElementCount - 1, tokenColor);
+    checkWin(columnNumber, columnNode.childElementCount - 1, tokenColor);
 });
+
+function checkWin(columnNumber, rowNumber, color) {
+    checkVerticalWin(columnNumber, color);
+    checkHorizontalWin(columnNumber, rowNumber, color);
+    checkAscendingSlant(columnNumber, rowNumber, color);
+    checkDescendingSlant(columnNumber, rowNumber, color); 
+}
 
 function getNewGameToken() {
     const token = document.createElement("span");
@@ -65,21 +69,20 @@ function checkHorizontalWin(columnNumber, rowNumber, colorString) {
     } 
 }
 
-function checkLeft(columnNumber, rowNumber, colorString) {
+function checkNext(columnNumber, rowNumber, colorString, columnShift, rowShift) {
     if (!isFilledArrayPosition(columnNumber, rowNumber) || gameGridArray[columnNumber][rowNumber] != colorString) {
         return 0;
     } else {
-        // console.log(gameGridArray[columnNumber][rowNumber]);
-        return 1 + checkLeft(columnNumber - 1, rowNumber, colorString);
+        return 1 + checkNext(columnNumber + columnShift, rowNumber + rowShift, colorString, columnShift, rowShift);
     }
 }
 
+function checkLeft(columnNumber, rowNumber, colorString) {
+    return checkNext(columnNumber, rowNumber, colorString, -1, 0);
+}
+
 function checkRight(columnNumber, rowNumber, colorString) {
-    if (!isFilledArrayPosition(columnNumber, rowNumber) || gameGridArray[columnNumber][rowNumber] != colorString) {
-        return 0;
-    } else {
-        return 1 + checkRight(columnNumber + 1, rowNumber, colorString);
-    }
+    return checkNext(columnNumber, rowNumber, colorString, 1, 0);
 }
 
 function checkAscendingSlant(columnNumber, rowNumber, colorString) {
@@ -89,19 +92,11 @@ function checkAscendingSlant(columnNumber, rowNumber, colorString) {
 }
 
 function checkUpRight(columnNumber, rowNumber, colorString) {
-    if (!isFilledArrayPosition(columnNumber, rowNumber) || gameGridArray[columnNumber][rowNumber] != colorString) {
-        return 0;
-    } else {
-        return 1 + checkUpRight(columnNumber + 1, rowNumber + 1, colorString);
-    }
+    return checkNext(columnNumber, rowNumber, colorString, 1, 1);
 }
 
 function checkDownLeft(columnNumber, rowNumber, colorString) {
-    if (!isFilledArrayPosition(columnNumber, rowNumber) || gameGridArray[columnNumber][rowNumber] != colorString) {
-        return 0;
-    } else {
-        return 1 + checkDownLeft(columnNumber - 1, rowNumber - 1, colorString);
-    }
+    return checkNext(columnNumber, rowNumber, colorString, -1, -1);
 }
 
 function checkDescendingSlant(columnNumber, rowNumber, colorString) {
@@ -111,19 +106,11 @@ function checkDescendingSlant(columnNumber, rowNumber, colorString) {
 }
 
 function checkDownRight(columnNumber, rowNumber, colorString) {
-    if (!isFilledArrayPosition(columnNumber, rowNumber) || gameGridArray[columnNumber][rowNumber] != colorString) {
-        return 0;
-    } else {
-        return 1 + checkDownRight(columnNumber + 1, rowNumber - 1, colorString);
-    }
+    return checkNext(columnNumber, rowNumber, colorString, 1, -1);
 }
 
 function checkUpLeft(columnNumber, rowNumber, colorString) {
-    if (!isFilledArrayPosition(columnNumber, rowNumber) || gameGridArray[columnNumber][rowNumber] != colorString) {
-        return 0;
-    } else {
-        return 1 + checkUpLeft(columnNumber - 1, rowNumber + 1, colorString);
-    }
+    return checkNext(columnNumber, rowNumber, colorString, -1, 1);
 }
 
 function isFilledArrayPosition(columnNumber, rowNumber) {

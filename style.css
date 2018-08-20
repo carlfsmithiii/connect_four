@@ -3,6 +3,7 @@
 .column {
     display: inline-flex;
     flex-direction: column-reverse;
+    align-items: center;
     width: 100px;
     height: 700px;
     border: 2px solid black;
@@ -13,6 +14,7 @@
     width: 90px;
     height: 90px;
     border-radius: 50%;
+    margin-top: 10px;
 }
 
 .red {

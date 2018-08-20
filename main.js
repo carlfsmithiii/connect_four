@@ -24,12 +24,13 @@ gameGridNode.addEventListener("click", function dropToken(event) {
         return;
     }
 
-    const token = getNewGameToken();
+    const rowNumber = columnNode.childElementCount;
+    const token = getNewGameToken(rowNumber);
     const columnNumber = Number(columnNode.dataset.column);
     const tokenColor = token.dataset.color;
     gameGridArray[columnNumber].push([tokenColor]);
     columnNode.appendChild(token);
-    checkWin(columnNumber, columnNode.childElementCount - 1, tokenColor);
+    checkWin(columnNumber, rowNumber, tokenColor);
 });
 
 function isConditionInvalid(columnNode) {
@@ -52,10 +53,10 @@ function checkWin(columnNumber, rowNumber, color) {
     checkDescendingSlant(columnNumber, rowNumber, color); 
 }
 
-function getNewGameToken() {
+function getNewGameToken(rowNumber) {
     const token = document.createElement("span");
     const color = getNextTokenColor();
-    token.classList.add("token", color);
+    token.classList.add("token", color, "token" + rowNumber);
     token.dataset.color = color;
     return token;
 }
@@ -156,7 +157,5 @@ function win() {
     winningDisplayHeader.style.color = currentColor;
     document.body.appendChild(winningDisplayHeader);
 }
-
-
 
 initGameArray();

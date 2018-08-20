@@ -52,3 +52,99 @@ body {
 .blue_border {
     border: 2px solid blue;
 }
+
+@keyframes rainingPiece0 {
+    from {
+        margin-bottom: 600%;
+    }
+    to {
+        margin-bottom: 0%;
+    }
+}
+
+@keyframes rainingPiece1 {
+    from {
+        margin-bottom: 500%;
+    }
+    to {
+        margin-bottom: 0%;
+    } 
+}
+
+@keyframes rainingPiece2 {
+    from {
+        margin-bottom: 400%;
+    }
+    to {
+        margin-bottom: 0%;
+    }
+}
+
+@keyframes rainingPiece3 {
+    from {
+        margin-bottom: 300%;
+    }
+    to {
+        margin-bottom: 0%;
+    }
+}
+
+@keyframes rainingPiece4 {
+    from {
+        margin-bottom: 200%;
+    }
+    to {
+        margin-bottom: 0%;
+    }
+}
+
+@keyframes rainingPiece5 {
+    from {
+        margin-bottom: 100%;
+    }
+    to {
+        margin-bottom: 0%;
+    }
+}
+
+.token0 {
+    animation-duration: 1s;
+    animation-name: rainingPiece0;
+    animation-timing-function: ease-in;
+}
+
+.token1 {
+    animation-duration: .9s;
+    animation-name: rainingPiece1;
+    animation-timing-function: ease-in;
+}
+
+.token2 {
+    animation-duration: .7s;
+    animation-name: rainingPiece2;
+    animation-timing-function: ease-in;
+}
+
+.token3 {
+    animation-duration: .6s;
+    animation-name: rainingPiece3;
+    animation-timing-function: ease-in;
+}
+
+.token4 {
+    animation-duration: .4s;
+    animation-name: rainingPiece4;
+    animation-timing-function: ease-in;
+}
+
+.token5 {
+    animation-duration: .2s;
+    animation-name: rainingPiece5;
+    animation-timing-function: ease-in;
+}
+
+.token6 {
+    animation-duration: .1s;
+    animation-name: rainingPiece6;
+    animation-timing-function: ease-in;
+}

@@ -10,8 +10,14 @@ function initGameArray() {
 }
 
 gameGridNode.addEventListener("click", function dropToken(event) {
-    const token = getNewGameToken();
     const columnNode = event.target;
+
+    console.log(columnNode);
+    if (!columnNode.classList.contains("column")) {
+        return;
+    }
+
+    const token = getNewGameToken();
     const columnNumber = Number(columnNode.dataset.column);
     const tokenColor = token.dataset.color;
     gameGridArray[columnNumber].push([tokenColor]);

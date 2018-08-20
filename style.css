@@ -1,9 +1,12 @@
+
+
 .column {
     display: inline-flex;
     flex-direction: column-reverse;
     width: 100px;
     height: 700px;
     border: 2px solid black;
+    box-sizing: border-box;
 }
 
 .token {
@@ -18,4 +21,19 @@
 
 .black {
     background-color: #000000;
+}
+
+#screen {
+    width: 100%;
+    height: 600px;
+    position: absolute;
+    top: 100px;
+    z-index: 1;
+    background-color: rgba(100, 100, 100, 0.0);
+    border-top: 5px solid black;
+}
+
+#game_grid {
+    position: relative;
+    display: inline-block;
 }

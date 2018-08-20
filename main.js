@@ -3,15 +3,6 @@ const gameGridArray = [[]];
 
 let currentColor = "red";
 
-const gamePieceEnum = Object.freeze({
-    "BLACK": {
-        color: "black",
-    },
-    "RED": {
-        color: "red",
-    }
-});
-
 function initGameArray() {
     for (let column = 0; column < 7; column++) {
         gameGridArray.push([]);

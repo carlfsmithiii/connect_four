@@ -1,4 +1,10 @@
+* {
+    box-sizing: border-box;
+}
 
+body {
+    text-align: center;
+}
 
 .column {
     display: inline-flex;
@@ -6,15 +12,15 @@
     align-items: center;
     width: 100px;
     height: 700px;
-    border: 2px solid black;
-    box-sizing: border-box;
+    border: 1px solid black;
+    padding-bottom: 2px;
 }
 
 .token {
     width: 90px;
     height: 90px;
     border-radius: 50%;
-    margin-top: 10px;
+    margin-top: 9.5px;
 }
 
 .red {
@@ -31,11 +37,18 @@
     position: absolute;
     top: 100px;
     z-index: 1;
-    background-color: rgba(100, 100, 100, 0.0);
+    background-color: rgba(100, 100, 100, 0.2);
     border-top: 5px solid black;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 #game_grid {
     position: relative;
-    display: inline-block;
+    display: inline-flex;
+    padding-bottom: 1px;
+}
+
+.blue_border {
+    border: 2px solid blue;
 }

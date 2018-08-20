@@ -1,4 +1,5 @@
 const gameGridNode = document.getElementById("game_grid");
+const screen = document.getElementById("screen");
 const gameGridArray = [[]];
 
 let isWon = false;
@@ -8,6 +9,11 @@ let currentColor = "black";
 function initGameArray() {
     for (let column = 0; column < 7; column++) {
         gameGridArray.push([]);
+    }
+    for (let i = 0; i < 6 * 7; i++) {
+        const gridItem = document.createElement("div");
+        gridItem.classList.add("blue_border");
+        screen.appendChild(gridItem);
     }
 }
 

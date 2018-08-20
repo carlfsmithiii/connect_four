@@ -12,13 +12,9 @@ function initGameArray() {
 }
 
 gameGridNode.addEventListener("click", function dropToken(event) {
-    if (isWon) {
-        return;
-    }
-
     const columnNode = event.target;
-
-    if (!columnNode.classList.contains("column")) {
+    
+    if (isConditionInvalid(columnNode)) {
         return;
     }
 
@@ -29,6 +25,19 @@ gameGridNode.addEventListener("click", function dropToken(event) {
     columnNode.appendChild(token);
     checkWin(columnNumber, columnNode.childElementCount - 1, tokenColor);
 });
+
+function isConditionInvalid(columnNode) {
+    if (isWon) {
+        return true;
+    }
+    if (!columnNode.classList.contains("column")) {
+        return true;
+    }
+    if (columnNode.childElementCount >= 6) {
+        return true;
+    }
+    return false;
+}
 
 function checkWin(columnNumber, rowNumber, color) {
     checkVerticalWin(columnNumber, color);

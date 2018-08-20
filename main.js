@@ -60,12 +60,17 @@ function checkHorizontalWin(columnNumber, rowNumber, colorString) {
     } 
 }
 
-function checkNext(columnNumber, rowNumber, colorString, columnShift, rowShift) {
-    if (!isFilledArrayPosition(columnNumber, rowNumber) || gameGridArray[columnNumber][rowNumber] != colorString) {
-        return 0;
-    } else {
-        return 1 + checkNext(columnNumber + columnShift, rowNumber + rowShift, colorString, columnShift, rowShift);
-    }
+
+function checkDescendingSlant(columnNumber, rowNumber, colorString) {
+    if ((checkDownRight(columnNumber, rowNumber, colorString) + checkUpLeft(columnNumber, rowNumber, colorString) - 1) >= 4) {
+        console.log("WIN");
+    } 
+}
+
+function checkAscendingSlant(columnNumber, rowNumber, colorString) {
+    if ((checkUpRight(columnNumber, rowNumber, colorString) + checkDownLeft(columnNumber, rowNumber, colorString) - 1) >= 4) {
+        console.log("WIN");
+    } 
 }
 
 function checkLeft(columnNumber, rowNumber, colorString) {
@@ -76,25 +81,15 @@ function checkRight(columnNumber, rowNumber, colorString) {
     return checkNext(columnNumber, rowNumber, colorString, 1, 0);
 }
 
-function checkAscendingSlant(columnNumber, rowNumber, colorString) {
-    if ((checkUpRight(columnNumber, rowNumber, colorString) + checkDownLeft(columnNumber, rowNumber, colorString) - 1) >= 4) {
-        console.log("WIN");
-    } 
+function checkDownLeft(columnNumber, rowNumber, colorString) {
+    return checkNext(columnNumber, rowNumber, colorString, -1, -1);
 }
+
 
 function checkUpRight(columnNumber, rowNumber, colorString) {
     return checkNext(columnNumber, rowNumber, colorString, 1, 1);
 }
 
-function checkDownLeft(columnNumber, rowNumber, colorString) {
-    return checkNext(columnNumber, rowNumber, colorString, -1, -1);
-}
-
-function checkDescendingSlant(columnNumber, rowNumber, colorString) {
-    if ((checkDownRight(columnNumber, rowNumber, colorString) + checkUpLeft(columnNumber, rowNumber, colorString) - 1) >= 4) {
-        console.log("WIN");
-    } 
-}
 
 function checkDownRight(columnNumber, rowNumber, colorString) {
     return checkNext(columnNumber, rowNumber, colorString, 1, -1);
@@ -103,6 +98,15 @@ function checkDownRight(columnNumber, rowNumber, colorString) {
 function checkUpLeft(columnNumber, rowNumber, colorString) {
     return checkNext(columnNumber, rowNumber, colorString, -1, 1);
 }
+
+function checkNext(columnNumber, rowNumber, colorString, columnShift, rowShift) {
+    if (!isFilledArrayPosition(columnNumber, rowNumber) || gameGridArray[columnNumber][rowNumber] != colorString) {
+        return 0;
+    } else {
+        return 1 + checkNext(columnNumber + columnShift, rowNumber + rowShift, colorString, columnShift, rowShift);
+    }
+}
+
 
 function isFilledArrayPosition(columnNumber, rowNumber) {
     try {

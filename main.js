@@ -1,7 +1,9 @@
 const gameGridNode = document.getElementById("game_grid");
 const gameGridArray = [[]];
 
-let currentColor = "red";
+let isWon = false;
+
+let currentColor = "black";
 
 function initGameArray() {
     for (let column = 0; column < 7; column++) {
@@ -10,9 +12,12 @@ function initGameArray() {
 }
 
 gameGridNode.addEventListener("click", function dropToken(event) {
+    if (isWon) {
+        return;
+    }
+
     const columnNode = event.target;
 
-    console.log(columnNode);
     if (!columnNode.classList.contains("column")) {
         return;
     }
@@ -41,8 +46,8 @@ function getNewGameToken() {
 }
 
 function getNextTokenColor() {
-    const color = currentColor;
     toggleCurrentColor();
+    const color = currentColor;
     return color;
 }
 
@@ -56,26 +61,26 @@ function toggleCurrentColor() {
 
 function checkVerticalWin(columnNumber, colorString) {
     if (gameGridArray[columnNumber].join('').includes(colorString.repeat(4))) {
-        console.log("WIN");
+        win();
     }
 }
 
 function checkHorizontalWin(columnNumber, rowNumber, colorString) {
     if ((checkLeft(columnNumber, rowNumber, colorString) + checkRight(columnNumber, rowNumber, colorString) - 1) >= 4) {
-        console.log("WIN");
+        win();
     } 
 }
 
 
 function checkDescendingSlant(columnNumber, rowNumber, colorString) {
     if ((checkDownRight(columnNumber, rowNumber, colorString) + checkUpLeft(columnNumber, rowNumber, colorString) - 1) >= 4) {
-        console.log("WIN");
+        win();
     } 
 }
 
 function checkAscendingSlant(columnNumber, rowNumber, colorString) {
     if ((checkUpRight(columnNumber, rowNumber, colorString) + checkDownLeft(columnNumber, rowNumber, colorString) - 1) >= 4) {
-        console.log("WIN");
+        win();
     } 
 }
 
@@ -126,6 +131,17 @@ function isFilledArrayPosition(columnNumber, rowNumber) {
         }
     }
 }
+
+function win() {
+    isWon = true;
+    const winningText = document.createTextNode((currentColor + " wins!").toUpperCase());
+    const winningDisplayHeader = document.createElement("h1");
+    winningDisplayHeader.appendChild(winningText);
+    winningDisplayHeader.style.fontSize = "5em";
+    winningDisplayHeader.style.color = currentColor;
+    document.body.appendChild(winningDisplayHeader);
+}
+
 
 
 initGameArray();

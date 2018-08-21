@@ -20,7 +20,7 @@ function initGameArray() {
 
 gameGridNode.addEventListener("click", function dropToken(event) {
     const columnNode = event.target;
-    
+
     if (isConditionInvalid(columnNode)) {
         return;
     }
@@ -55,7 +55,7 @@ function checkWin(columnNumber, rowNumber, color) {
     checkVerticalWin(columnNumber, color);
     checkHorizontalWin(columnNumber, rowNumber, color);
     checkAscendingSlant(columnNumber, rowNumber, color);
-    checkDescendingSlant(columnNumber, rowNumber, color); 
+    checkDescendingSlant(columnNumber, rowNumber, color);
 }
 
 function getNewGameToken(rowNumber) {
@@ -89,20 +89,19 @@ function checkVerticalWin(columnNumber, colorString) {
 function checkHorizontalWin(columnNumber, rowNumber, colorString) {
     if ((checkLeft(columnNumber, rowNumber, colorString) + checkRight(columnNumber, rowNumber, colorString) - 1) >= 4) {
         win();
-    } 
+    }
 }
-
 
 function checkDescendingSlant(columnNumber, rowNumber, colorString) {
     if ((checkDownRight(columnNumber, rowNumber, colorString) + checkUpLeft(columnNumber, rowNumber, colorString) - 1) >= 4) {
         win();
-    } 
+    }
 }
 
 function checkAscendingSlant(columnNumber, rowNumber, colorString) {
     if ((checkUpRight(columnNumber, rowNumber, colorString) + checkDownLeft(columnNumber, rowNumber, colorString) - 1) >= 4) {
         win();
-    } 
+    }
 }
 
 function checkLeft(columnNumber, rowNumber, colorString) {
@@ -117,11 +116,9 @@ function checkDownLeft(columnNumber, rowNumber, colorString) {
     return checkNext(columnNumber, rowNumber, colorString, -1, -1);
 }
 
-
 function checkUpRight(columnNumber, rowNumber, colorString) {
     return checkNext(columnNumber, rowNumber, colorString, 1, 1);
 }
-
 
 function checkDownRight(columnNumber, rowNumber, colorString) {
     return checkNext(columnNumber, rowNumber, colorString, 1, -1);
@@ -138,7 +135,6 @@ function checkNext(columnNumber, rowNumber, colorString, columnShift, rowShift) 
         return 1 + checkNext(columnNumber + columnShift, rowNumber + rowShift, colorString, columnShift, rowShift);
     }
 }
-
 
 function isFilledArrayPosition(columnNumber, rowNumber) {
     try {

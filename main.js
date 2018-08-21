@@ -1,8 +1,9 @@
 const gameGridNode = document.getElementById("game_grid");
 const screen = document.getElementById("screen");
-const gameGridArray = [[]];
+const gameGridArray = [];
 
 let isWon = false;
+let lastClickTimeStamp = 0;
 
 let currentColor = "black";
 
@@ -43,6 +44,10 @@ function isConditionInvalid(columnNode) {
     if (columnNode.childElementCount >= 6) {
         return true;
     }
+    if (lastClickTimeStamp > Date.now() - 1000) {
+        return true;
+    }
+    lastClickTimeStamp = Date.now();
     return false;
 }
 

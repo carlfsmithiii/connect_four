@@ -142,7 +142,7 @@ function checkNext(columnNumber, rowNumber, colorString, columnShift, rowShift) 
 
 function isFilledArrayPosition(columnNumber, rowNumber) {
     try {
-        let accessed = gameGridArray[columnNumber][rowNumber];
+        let _accessed = gameGridArray[columnNumber][rowNumber];
         return true;
     } catch (error) {
         if (error instanceof TypeError) {

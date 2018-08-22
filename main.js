@@ -1,5 +1,7 @@
 const gameGridNode = document.getElementById("game_grid");
-const screen = document.getElementById("screen");
+const visualGridNode = document.getElementById("screen");
+const boardHeight = 6;
+const boardWidth = 7;
 const gameGridArray = [];
 
 let isWon = false;
@@ -7,14 +9,22 @@ let lastClickTimeStamp = 0;
 
 let currentColor = "black";
 
+function initGame() {
+    initGameArray();
+    initVisualGrid();
+}
+
 function initGameArray() {
     for (let column = 0; column < 7; column++) {
         gameGridArray.push([]);
     }
-    for (let i = 0; i < 6 * 7; i++) {
-        const gridItem = document.createElement("div");
-        gridItem.classList.add("blue_border");
-        screen.appendChild(gridItem);
+}
+
+function initVisualGrid() {
+   for (let i = 0; i < boardHeight * boardWidth; i++) {
+        const gridCell = document.createElement("div");
+        gridCell.classList.add("blue_border");
+        visualGridNode.appendChild(gridCell);
     }
 }
 
@@ -159,4 +169,4 @@ function win() {
     document.body.appendChild(winningDisplayHeader);
 }
 
-initGameArray();
+initGame();

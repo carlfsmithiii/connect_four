@@ -15,7 +15,7 @@ function initGame() {
 }
 
 function initGameArray() {
-    for (let column = 0; column < 7; column++) {
+    for (let column = 0; column < boardWidth; column++) {
         gameGridArray.push([]);
     }
 }
@@ -51,7 +51,7 @@ function isConditionInvalid(columnNode) {
     if (!columnNode.classList.contains("column")) {
         return true;
     }
-    if (columnNode.childElementCount >= 6) {
+    if (columnNode.childElementCount >= boardHeight) {
         return true;
     }
     if (lastClickTimeStamp > Date.now() - 1000) {
